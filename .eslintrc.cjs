@@ -16,10 +16,6 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   overrides: [],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
   plugins: ['react', 'prettier'],
   rules: {
     // 'prettier/prettier': ['warn'],
