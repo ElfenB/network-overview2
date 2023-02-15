@@ -11,14 +11,17 @@ module.exports = {
     '@boehringer-ingelheim/eslint-config/base/strict',
     '@boehringer-ingelheim/eslint-config/react',
     // Enable when using playwright
-    // "@boehringer-ingelheim/eslint-config/playwright"
+    // "@boehringer-ingelheim/eslint-config/playwright",
+    // REMEMBER: Prettier has to be the last one to work
+    'plugin:prettier/recommended',
   ],
   overrides: [],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
-  rules: {},
+  plugins: ['react', 'prettier'],
+  rules: {
+    // 'prettier/prettier': ['warn'],
+  },
 };
