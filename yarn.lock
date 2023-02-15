@@ -26,6 +26,11 @@
     eslint-plugin-sonarjs "0.18.0"
     eslint-plugin-sort-keys-plus "1.3.1"
 
+"@boehringer-ingelheim/prettier-config@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@boehringer-ingelheim/prettier-config/-/prettier-config-1.0.0.tgz#c87bce1ce660b404732d2dfd0bfbff6a27734df0"
+  integrity sha512-kjX8VhnpVKZor+XrwBweqZV1BZ/0STOBja55DA1HbSAa2ASBSlgutcJxqHhpEZY558jhij3+k6kZAbfdg0KRlg==
+
 "@esbuild/android-arm64@0.16.17":
   version "0.16.17"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm64/-/android-arm64-0.16.17.tgz#cf91e86df127aa3d141744edafcba0abdc577d23"
