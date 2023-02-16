@@ -19,11 +19,15 @@ type Props = {
 };
 
 export function UpdateButton({ isUpToDate, handleUpdateDevice, handleCheckUpdate }: Props) {
-  const updateNotPossible = useMemo(() => isUpToDate || isUpToDate === undefined, [isUpToDate]);
+  const isUpdateNotPossible = useMemo(() => isUpToDate || isUpToDate === undefined, [isUpToDate]);
 
   return (
     <Box sx={sx.root}>
-      <Button onClick={handleUpdateDevice} disabled={updateNotPossible}>
+      <Button
+        onClick={handleUpdateDevice}
+        disabled={isUpdateNotPossible}
+        sx={{ opacity: isUpdateNotPossible ? 0 : 100 }}
+      >
         Update
       </Button>
 

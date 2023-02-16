@@ -27,8 +27,6 @@ export function DeviceTile({ data }: Props) {
   const isUpToDate = useMemo(() => getIsUpToDate(data.version, data.latestVersion), [data.version, data.latestVersion]);
 
   const updateString = useMemo(() => {
-    console.log(data.name, isUpToDate, data.version, data.latestVersion);
-
     if (isUpToDate === undefined) {
       return '?';
     }
