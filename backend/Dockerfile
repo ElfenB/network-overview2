@@ -23,6 +23,8 @@ COPY --from=build-stage ./app/node_modules/ ./node_modules/
 COPY --from=build-stage ./app/package.json ./
 COPY --from=build-stage ./app/.env ./
 
+# VOLUME /data
+
 # EXPOSE 3000
 
 CMD [ "yarn", "start" ]
