@@ -16,7 +16,7 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   overrides: [],
-  plugins: ['react', 'prettier'],
+  plugins: ['prettier'],
   rules: {
     // 'prettier/prettier': ['warn'],
     'sonarjs/no-duplicate-string': 'off',

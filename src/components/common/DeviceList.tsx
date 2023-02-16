@@ -8,8 +8,8 @@ const sx: Record<string, SxProps<Theme>> = {
     display: 'flex',
     flexWrap: 'wrap',
     gap: 1,
-    marginTop: 1,
     marginBottom: 2,
+    marginTop: 1,
   },
 };
 
@@ -22,7 +22,7 @@ export function DeviceList({ devices, handleAddTile }: Props) {
   return (
     <Box sx={sx.root}>
       {devices.map((d) => (
-        <DeviceTile data={d} key={d.name + d.room} />
+        <DeviceTile key={d.name + d.room} data={d} />
       ))}
       <NewDeviceTile handleAddTile={handleAddTile} />
     </Box>
