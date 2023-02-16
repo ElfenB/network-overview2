@@ -32,7 +32,7 @@ export function TasmotaDevices() {
         handleUpdateDeviceAll={handleUpdateDeviceAll}
         isUpToDateAll={isUpToDateAll}
       >
-        {`Tasmota ${isUpToDateAll}`}
+        Tasmota
       </DeviceListHeader>
       <DeviceList devices={devices} handleAddTile={handleAddTile} />
     </>
