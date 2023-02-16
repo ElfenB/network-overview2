@@ -5,6 +5,7 @@ import { TileData } from './DeviceTile.types';
 const sx: Record<string, SxProps<Theme>> = {
   root: {
     display: 'flex',
+    flexWrap: 'wrap',
     gap: 1,
     marginTop: 1,
     marginBottom: 2,
