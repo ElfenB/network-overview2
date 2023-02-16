@@ -5,10 +5,9 @@ import { useMemo } from 'react';
 
 const sx: Record<string, SxProps<Theme>> = {
   root: {
-    width: '100%',
-    marginTop: 1,
     display: 'flex',
     justifyContent: 'space-between',
+    marginTop: 1,
   },
 };
 
@@ -16,9 +15,10 @@ type Props = {
   isUpToDate: boolean | undefined;
   handleUpdateDevice: () => void;
   handleCheckUpdate: () => void;
+  multipleItems?: boolean;
 };
 
-export function UpdateButton({ isUpToDate, handleUpdateDevice, handleCheckUpdate }: Props) {
+export function UpdateButton({ isUpToDate, handleUpdateDevice, handleCheckUpdate, multipleItems }: Props) {
   const isUpdateNotPossible = useMemo(() => isUpToDate || isUpToDate === undefined, [isUpToDate]);
 
   return (
@@ -28,7 +28,7 @@ export function UpdateButton({ isUpToDate, handleUpdateDevice, handleCheckUpdate
         disabled={isUpdateNotPossible}
         sx={{ opacity: isUpdateNotPossible ? 0 : 100 }}
       >
-        Update
+        {multipleItems ? 'Update all' : 'Update'}
       </Button>
 
       <IconButton onClick={handleCheckUpdate}>

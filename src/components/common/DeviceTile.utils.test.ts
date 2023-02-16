@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { getIsUpToDate, getVersionColor } from './DeviceTile.utils';
+import { TileData } from './DeviceTile.types';
+import { getIsUpToDate, getIsUpToDateAll, getVersionColor } from './DeviceTile.utils';
 
 describe('getIsUpToDate', () => {
   it('should return undefined when latest version is empty', () => {
@@ -52,6 +53,80 @@ describe('getIsUpToDate', () => {
     currentVersion = '1.1.1';
     latestVersion = undefined;
     expect(getIsUpToDate(currentVersion, latestVersion)).toBeUndefined();
+  });
+});
+
+describe('getIsUpToDateAll', () => {
+  it('should return true when all devices are up to date', () => {
+    const devices: TileData[] = [
+      {
+        latestVersion: '1.2.3',
+        name: 'Rollladen',
+        room: 'Schlafzimmer',
+        url: 'http://192.168.178.101',
+        version: '1.2.3',
+      },
+      {
+        latestVersion: '1.2.3',
+        name: 'Rollladen rechts',
+        room: 'Eltern-Schlafzimmer',
+        url: 'http://192.168.178.152',
+        version: '1.2.3',
+      },
+    ];
+    expect(getIsUpToDateAll(devices)).toBe(true);
+  });
+
+  it('should return undefined when all devices have no version number', () => {
+    const devices: TileData[] = [
+      {
+        name: 'Rollladen',
+        room: 'Schlafzimmer',
+        url: 'http://192.168.178.101',
+      },
+      {
+        name: 'Rollladen rechts',
+        room: 'Eltern-Schlafzimmer',
+        url: 'http://192.168.178.152',
+      },
+    ];
+    expect(getIsUpToDateAll(devices)).toBe(undefined);
+  });
+
+  it('should return false when some devices have no version number and at least one can be updated', () => {
+    const devices: TileData[] = [
+      {
+        name: 'Rollladen',
+        room: 'Schlafzimmer',
+        url: 'http://192.168.178.101',
+      },
+      {
+        latestVersion: '1.2.5',
+        name: 'Rollladen rechts',
+        room: 'Eltern-Schlafzimmer',
+        url: 'http://192.168.178.152',
+        version: '1.2.3',
+      },
+    ];
+    expect(getIsUpToDateAll(devices)).toBe(false);
+  });
+
+  it('should return true when some devices have no version number and all others are up-to-date', () => {
+    const devices: TileData[] = [
+      {
+        name: 'Rollladen',
+        room: 'Schlafzimmer',
+        url: 'http://192.168.178.101',
+      },
+      {
+        latestVersion: '1.2.5',
+        name: 'Rollladen rechts',
+        room: 'Eltern-Schlafzimmer',
+        url: 'http://192.168.178.152',
+        version: '1.2.5',
+      },
+    ];
+    expect(getIsUpToDateAll(devices)).toBe(true);
   });
 });
 
