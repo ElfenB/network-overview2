@@ -9,14 +9,17 @@ export const mongooseDevicesMock: TileData[] = [
     url: 'http://192.168.178.101',
   },
   {
+    latestVersion: '1.2.5',
     name: 'Rollladen rechts',
     room: 'Eltern-Schlafzimmer',
     url: 'http://192.168.178.152',
+    version: '1.2.3',
   },
   {
     name: 'Rollladen links',
     room: 'Eltern-Schlafzimmer',
     url: 'http://192.168.178.153',
+    version: '1.2.3',
   },
   {
     name: 'Rollladen',

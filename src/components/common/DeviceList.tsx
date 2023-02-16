@@ -1,6 +1,7 @@
 import { Box, SxProps, Theme } from '@mui/material';
 import { DeviceTile } from './DeviceTile';
 import { TileData } from './DeviceTile.types';
+import { NewDeviceTile } from './NewDeviceTile';
 
 const sx: Record<string, SxProps<Theme>> = {
   root: {
@@ -14,14 +15,16 @@ const sx: Record<string, SxProps<Theme>> = {
 
 type Props = {
   devices: TileData[];
+  handleAddTile: () => void;
 };
 
-export function DeviceList({ devices }: Props) {
+export function DeviceList({ devices, handleAddTile }: Props) {
   return (
     <Box sx={sx.root}>
       {devices.map((d) => (
         <DeviceTile data={d} key={d.name + d.room} />
       ))}
+      <NewDeviceTile handleAddTile={handleAddTile} />
     </Box>
   );
 }
