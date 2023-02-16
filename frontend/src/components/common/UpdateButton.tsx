@@ -23,7 +23,7 @@ type Props = {
   isUpToDate: boolean | undefined;
   handleUpdateDevice: () => void;
   handleCheckUpdate: () => void;
-  handleEdit: () => void;
+  handleEdit?: () => void;
   multipleItems?: boolean;
 };
 

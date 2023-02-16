@@ -61,6 +61,8 @@ describe('getIsUpToDateAll', () => {
     const devices: TileData[] = [
       {
         latestVersion: '1.2.3',
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
@@ -68,6 +70,8 @@ describe('getIsUpToDateAll', () => {
       },
       {
         latestVersion: '1.2.3',
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
@@ -80,11 +84,15 @@ describe('getIsUpToDateAll', () => {
   it('should return undefined when all devices have no version number', () => {
     const devices: TileData[] = [
       {
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
       },
       {
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
@@ -96,12 +104,16 @@ describe('getIsUpToDateAll', () => {
   it('should return false when some devices have no version number and at least one can be updated', () => {
     const devices: TileData[] = [
       {
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
       },
       {
         latestVersion: '1.2.5',
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
@@ -114,12 +126,16 @@ describe('getIsUpToDateAll', () => {
   it('should return true when some devices have no version number and all others are up-to-date', () => {
     const devices: TileData[] = [
       {
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
       },
       {
         latestVersion: '1.2.5',
+        type: 'other',
+        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
