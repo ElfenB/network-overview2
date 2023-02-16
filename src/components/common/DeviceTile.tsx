@@ -23,9 +23,10 @@ const sx: Record<string, SxProps<Theme>> = {
 type Props = {
   data: TileData;
   handleChangeData: (updatedDevice: TileData) => void;
+  handleDelete: (updatedDevice: TileData) => void;
 };
 
-export function DeviceTile({ data, handleChangeData }: Props) {
+export function DeviceTile({ data, handleChangeData, handleDelete }: Props) {
   const [editMode, setEditMode] = useState(false);
 
   const isUpToDate = useMemo(() => getIsUpToDate(data.version, data.latestVersion), [data.version, data.latestVersion]);
@@ -76,6 +77,7 @@ export function DeviceTile({ data, handleChangeData }: Props) {
 
       <DeviceEditModal
         handleClose={handleEndEditMode}
+        handleDelete={handleDelete}
         handleSave={handleChangeData}
         initialDevice={data}
         open={editMode}

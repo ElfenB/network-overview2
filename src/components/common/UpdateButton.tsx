@@ -10,6 +10,7 @@ const sx: Record<string, SxProps<Theme>> = {
     ':hover': {
       color: 'primary.main',
     },
+    color: 'grey.400',
   },
   root: {
     display: 'flex',

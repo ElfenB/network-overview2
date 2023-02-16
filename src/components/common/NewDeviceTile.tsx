@@ -9,10 +9,13 @@ const sx: Record<string, SxProps<Theme>> = {
     ':hover': {
       color: 'primary.main',
     },
+    color: 'grey.300',
     fontSize: 50,
+    transition: 'color .1s ease',
   },
   root: {
     alignItems: 'center',
+    background: 'transparent',
     boxShadow: 'none',
     display: 'flex',
     justifyContent: 'center',
@@ -40,7 +43,12 @@ export function NewDeviceTile({ handleAddTile }: Props) {
           <AddCircleOutlineIcon color="action" sx={sx.addIcon} />
         </IconButton>
       </Paper>
-      <DeviceEditModal handleClose={handleEndEditMode} handleSave={handleAddTile} open={editMode} />
+      <DeviceEditModal
+        handleClose={handleEndEditMode}
+        handleDelete={handleEndEditMode}
+        handleSave={handleAddTile}
+        open={editMode}
+      />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Box, SxProps, Theme } from '@mui/material';
 import { DeviceTile } from './DeviceTile';
 import { TileData } from './DeviceTile.types';
@@ -15,17 +16,40 @@ const sx: Record<string, SxProps<Theme>> = {
 
 type Props = {
   devices: TileData[];
-  handleAddTile: (device: TileData) => void;
-  handleChangeDevice: (device: TileData) => void;
+  setDevices: (devices: TileData[]) => void;
 };
 
-export function DeviceList({ devices, handleAddTile, handleChangeDevice }: Props) {
+export function DeviceList({ devices, setDevices }: Props) {
+  const handleChangeDevice = useCallback(
+    (newDevice: TileData) => {
+      // Check if device is already known
+      const deviceChanged = devices.filter((d) => d.uuid === newDevice.uuid).length === 1;
+      if (deviceChanged) {
+        return setDevices(devices.map((d) => (d.uuid === newDevice.uuid ? newDevice : d)));
+      }
+      return setDevices([...devices, newDevice]);
+    },
+    [devices, setDevices]
+  );
+
+  const handleDeleteDevice = useCallback(
+    (device: TileData) => {
+      setDevices(devices.filter((d) => d.uuid !== device.uuid));
+    },
+    [devices, setDevices]
+  );
+
   return (
     <Box sx={sx.root}>
       {devices.map((d) => (
-        <DeviceTile key={d.name + d.room} data={d} handleChangeData={handleChangeDevice} />
+        <DeviceTile
+          key={d.name + d.room}
+          data={d}
+          handleChangeData={handleChangeDevice}
+          handleDelete={handleDeleteDevice}
+        />
       ))}
-      <NewDeviceTile handleAddTile={handleAddTile} />
+      <NewDeviceTile handleAddTile={handleChangeDevice} />
     </Box>
   );
 }

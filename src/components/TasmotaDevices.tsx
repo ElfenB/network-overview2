@@ -1,16 +1,16 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { DeviceList } from './common/DeviceList';
 import { DeviceListHeader } from './common/DeviceListHeader';
 import { TileData } from './common/DeviceTile.types';
 import { getIsUpToDateAll } from './common/DeviceTile.utils';
-import { tasmotaDevicesMock } from './TasmotaDevices.mockData';
+import { useGetData } from './hooks/useGetData';
 
 export function TasmotaDevices() {
-  const devices: TileData[] = tasmotaDevicesMock;
+  const [devices, setDevices] = useState(useGetData('tasmota'));
 
-  const handleAddTile = useCallback(() => {
-    console.log('TODO: Implement adding Tasmota devices');
-    alert('Not implemented yet');
+  const handleSetDevices = useCallback((devices: TileData[]) => {
+    // TODO: Save devices when has changed
+    setDevices(devices);
   }, []);
 
   const handleCheckUpdateAll = useCallback(() => {
@@ -34,7 +34,7 @@ export function TasmotaDevices() {
       >
         Tasmota
       </DeviceListHeader>
-      <DeviceList devices={devices} handleAddTile={handleAddTile} />
+      <DeviceList devices={devices} setDevices={handleSetDevices} />
     </>
   );
 }

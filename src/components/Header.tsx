@@ -11,6 +11,7 @@ const sx: Record<string, SxProps<Theme>> = {
     background:
       'linear-gradient(69deg, rgba(188,227,254,1) 0%, rgba(170,221,230,1) 25%, rgba(198,252,245,1) 50%, rgba(170,230,205,1) 75%, rgba(188,254,208,1) 100%)',
     boxShadow: '1px 2px 5px -1px rgba(0,0,0,0.1)',
+    color: 'text.primary',
     display: 'flex',
     padding: 1,
   },

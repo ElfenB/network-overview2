@@ -1,9 +1,11 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,
   Container,
   FormHelperText,
+  IconButton,
   Input,
   MenuItem,
   Modal,
@@ -14,6 +16,7 @@ import {
   Theme,
   Typography,
 } from '@mui/material';
+import { v4 as uuid } from 'uuid';
 import { DeviceType, deviceTypes, initialTileState, TileData, urlRegex } from './DeviceTile.types';
 
 const sx: Record<string, SxProps<Theme>> = {
@@ -42,20 +45,31 @@ const sx: Record<string, SxProps<Theme>> = {
     flexDirection: 'column',
     gap: 1,
   },
+  uuid: {
+    color: 'grey.400',
+  },
 };
 
 type Props = {
   initialDevice?: TileData;
   open: boolean;
   handleClose: () => void;
+  handleDelete: (deletedDevice: TileData) => void;
   handleSave: (updatedDevice: TileData) => void;
 };
 
-export function DeviceEditModal({ handleClose, handleSave, open, initialDevice }: Props) {
+export function DeviceEditModal({ handleClose, handleDelete, handleSave, open, initialDevice }: Props) {
   const initialDeviceState = initialDevice ?? initialTileState;
 
   const [device, setDevice] = useState(initialDeviceState);
   const [urlValidationError, setUrlValidationError] = useState(false);
+
+  useEffect(() => {
+    // Randomize uuid for new devices
+    if (!initialDevice) {
+      setDevice((prevDevice) => ({ ...prevDevice, uuid: uuid() }));
+    }
+  }, [initialDevice]);
 
   const handleFormChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'url') {
@@ -71,14 +85,25 @@ export function DeviceEditModal({ handleClose, handleSave, open, initialDevice }
     []
   );
 
+  const handleDeleteButton = useCallback(() => {
+    // Reset data inside modal component
+    setDevice(initialTileState);
+    handleDelete(device);
+    handleClose();
+  }, [device, handleClose, handleDelete]);
+
   const handleCancelButton = useCallback(() => {
     setDevice(initialDeviceState);
     handleClose();
   }, [handleClose, initialDeviceState]);
 
   const handleSaveButton = useCallback(() => {
+    // TODO: Input validation and prevent submission
     handleSave(device);
-  }, [device, handleSave]);
+    // Reset data inside modal component
+    setDevice(initialTileState);
+    handleClose();
+  }, [device, handleClose, handleSave]);
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -114,10 +139,13 @@ export function DeviceEditModal({ handleClose, handleSave, open, initialDevice }
             </Select>
           </Box>
 
-          <FormHelperText>UUID: {device.uuid}</FormHelperText>
+          <FormHelperText sx={sx.uuid}>UUID: {device.uuid}</FormHelperText>
         </Container>
 
         <Box sx={sx.buttons}>
+          <IconButton onClick={handleDeleteButton}>
+            <DeleteIcon color="error" />
+          </IconButton>
           <Button onClick={handleCancelButton}>Cancel</Button>
           <Button onClick={handleSaveButton}>Save</Button>
         </Box>
