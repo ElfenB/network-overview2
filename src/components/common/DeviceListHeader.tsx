@@ -3,9 +3,9 @@ import { UpdateButton } from './UpdateButton';
 
 const sx: Record<string, SxProps<Theme>> = {
   root: {
+    alignItems: 'center',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
 };
 

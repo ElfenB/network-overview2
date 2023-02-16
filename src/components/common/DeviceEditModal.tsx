@@ -1,3 +1,4 @@
+import { ChangeEvent, useCallback, useState } from 'react';
 import {
   Box,
   Button,
@@ -13,7 +14,6 @@ import {
   Theme,
   Typography,
 } from '@mui/material';
-import { ChangeEvent, useCallback, useState } from 'react';
 import { DeviceType, deviceTypes, initialTileState, TileData, urlRegex } from './DeviceTile.types';
 
 const sx: Record<string, SxProps<Theme>> = {

@@ -15,14 +15,15 @@ const sx: Record<string, SxProps<Theme>> = {
 
 type Props = {
   devices: TileData[];
-  handleAddTile: () => void;
+  handleAddTile: (device: TileData) => void;
+  handleChangeDevice: (device: TileData) => void;
 };
 
-export function DeviceList({ devices, handleAddTile }: Props) {
+export function DeviceList({ devices, handleAddTile, handleChangeDevice }: Props) {
   return (
     <Box sx={sx.root}>
       {devices.map((d) => (
-        <DeviceTile key={d.name + d.room} data={d} />
+        <DeviceTile key={d.name + d.room} data={d} handleChangeData={handleChangeDevice} />
       ))}
       <NewDeviceTile handleAddTile={handleAddTile} />
     </Box>

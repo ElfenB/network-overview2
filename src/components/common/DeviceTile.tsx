@@ -1,6 +1,5 @@
-import { Box, Link, Paper, SxProps, Theme, Typography } from '@mui/material';
-// eslint-disable-next-line import/order
 import { useCallback, useMemo, useState } from 'react';
+import { Box, Link, Paper, SxProps, Theme, Typography } from '@mui/material';
 import { DeviceEditModal } from './DeviceEditModal';
 import { TileData } from './DeviceTile.types';
 import { getIsUpToDate, getVersionColor } from './DeviceTile.utils';

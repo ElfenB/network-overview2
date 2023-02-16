@@ -1,7 +1,8 @@
+import { useCallback, useState } from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { IconButton, Paper, SxProps, Theme } from '@mui/material';
-import { useCallback, useState } from 'react';
 import { DeviceEditModal } from './DeviceEditModal';
+import { TileData } from './DeviceTile.types';
 
 const sx: Record<string, SxProps<Theme>> = {
   addIcon: {
@@ -22,7 +23,7 @@ const sx: Record<string, SxProps<Theme>> = {
 };
 
 type Props = {
-  handleAddTile: () => void;
+  handleAddTile: (device: TileData) => void;
 };
 
 export function NewDeviceTile({ handleAddTile }: Props) {

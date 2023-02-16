@@ -15,7 +15,20 @@ module.exports = {
     // REMEMBER: Prettier has to be the last one to work
     'plugin:prettier/recommended',
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: [
+        'src/main.tsx',
+        'src/index.tsx',
+        'src/**/*.d.ts',
+        '**/*.{spec,test}.{ts,tsx}',
+        '*.{js,ts}', // mostly configuration files
+      ],
+      rules: {
+        'import/no-unused-modules': 'off',
+      },
+    },
+  ],
   plugins: ['prettier'],
   rules: {
     // 'prettier/prettier': ['warn'],
