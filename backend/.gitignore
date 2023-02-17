@@ -1,7 +1,18 @@
 .env
+*.sqlite
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,windows,git,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,macos,windows,git,node
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,windows,git,node,database
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,macos,windows,git,node,database
+
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
+*.db-shm
+*.db-wal
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
@@ -127,6 +138,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
+.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -235,5 +247,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,windows,git,node
-
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,windows,git,node,database

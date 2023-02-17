@@ -55,7 +55,7 @@ function handleTasmotaMessage(message: string) {
       topic: data.t,
       fullTopic: data.ft,
       subTopics: data.tp,
-      // stateVariants: data.state,
+      stateVariants: data.state,
     };
 
     // add device to storage when not already there
