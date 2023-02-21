@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { discoveredDevices, saveToStorage } from '../storage';
+import { addDevicesToStore, discoveredDevices, saveToStorage } from '../storage';
+import { TasmotaDevice } from './../tasmota.types';
 
 export const tasmotaRouter = express.Router();
 
@@ -12,5 +13,13 @@ tasmotaRouter.post('/save-discovered', (_req: Request, res: Response, _next: Nex
   if (err) {
     res.status(500).send(err);
   }
+  res.status(200).send();
+});
+
+tasmotaRouter.post('/add', (req: Request, res: Response, _next: NextFunction) => {
+  const newDevices: TasmotaDevice[] = req.body;
+
+  addDevicesToStore(newDevices)
+
   res.status(200).send();
 });

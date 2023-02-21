@@ -1,5 +1,5 @@
 import mqtt from 'mqtt';
-import { storeTasmotaDevice } from './storage';
+import { storeDiscoveredTasmotaDevice } from './storage';
 import { TasmotaDevice } from './tasmota.types';
 
 export function mqttSetup() {
@@ -59,6 +59,6 @@ function handleTasmotaMessage(message: string) {
     };
 
     // add device to storage when not already there
-    storeTasmotaDevice(device);
+    storeDiscoveredTasmotaDevice(device);
   }
 }
