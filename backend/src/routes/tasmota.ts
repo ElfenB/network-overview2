@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
+import { TasmotaDevice } from '../device.types';
 import { addDevicesToStore, discoveredDevices } from '../storage';
 import { tasmotaDevices } from './../storage';
-import { TasmotaDevice } from './../tasmota.types';
 
 export const tasmotaRouter = express.Router();
 

@@ -16,12 +16,16 @@ const sx: Record<string, SxProps<Theme>> = {
 
 type Props = {
   devices: TileData[];
-  setDevices: (devices: TileData[]) => void;
+  setDevices?: (devices: TileData[]) => void;
+  edit?: boolean;
 };
 
-export function DeviceList({ devices, setDevices }: Props) {
+export function DeviceList({ edit = true, devices, setDevices }: Props) {
   const handleChangeDevice = useCallback(
     (newDevice: TileData) => {
+      if (!setDevices) {
+        return;
+      }
       // Check if device is already known
       const isAlreadyKnown = devices.filter((d) => d.url === newDevice.url).length >= 1;
       if (isAlreadyKnown) {
@@ -34,6 +38,9 @@ export function DeviceList({ devices, setDevices }: Props) {
 
   const handleDeleteDevice = useCallback(
     (device: TileData) => {
+      if (!setDevices) {
+        return;
+      }
       setDevices(devices.filter((d) => d.url !== device.url));
     },
     [devices, setDevices]
@@ -41,15 +48,18 @@ export function DeviceList({ devices, setDevices }: Props) {
 
   return (
     <Box sx={sx.root}>
-      {devices.map((d) => (
-        <DeviceTile
-          key={d.name + d.room}
-          data={d}
-          handleChangeData={handleChangeDevice}
-          handleDelete={handleDeleteDevice}
-        />
-      ))}
-      <NewDeviceTile handleAddTile={handleChangeDevice} />
+      {devices.length > 0 &&
+        devices.map((d) => (
+          <DeviceTile
+            key={d.url}
+            data={d}
+            edit={edit}
+            handleChangeData={handleChangeDevice}
+            handleDelete={handleDeleteDevice}
+          />
+        ))}
+
+      {edit && <NewDeviceTile handleAddTile={handleChangeDevice} />}
     </Box>
   );
 }

@@ -10,6 +10,9 @@ const sx: Record<string, SxProps<Theme>> = {
     color: 'inherit',
     textDecoration: 'none',
   },
+  name: {
+    wordWrap: 'break-word',
+  },
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -22,11 +25,12 @@ const sx: Record<string, SxProps<Theme>> = {
 
 type Props = {
   data: TileData;
+  edit: boolean;
   handleChangeData: (updatedDevice: TileData) => void;
   handleDelete: (updatedDevice: TileData) => void;
 };
 
-export function DeviceTile({ data, handleChangeData, handleDelete }: Props) {
+export function DeviceTile({ edit, data, handleChangeData, handleDelete }: Props) {
   const [editMode, setEditMode] = useState(false);
 
   const isUpToDate = useMemo(() => getIsUpToDate(data.version, data.latestVersion), [data.version, data.latestVersion]);
@@ -57,7 +61,9 @@ export function DeviceTile({ data, handleChangeData, handleDelete }: Props) {
     <Paper sx={sx.root}>
       <Box sx={sx.description}>
         <Link href={getLinkForTile} rel="noreferrer" sx={sx.link} target="_blank">
-          <Typography variant="h6">{data.name}</Typography>
+          <Typography sx={sx.name} variant="h6">
+            {data.name}
+          </Typography>
         </Link>
 
         <Typography variant="body1">{data.room}</Typography>
@@ -68,12 +74,16 @@ export function DeviceTile({ data, handleChangeData, handleDelete }: Props) {
         )}
       </Box>
 
-      <UpdateButton
-        handleCheckUpdate={handleCheckUpdate}
-        handleEdit={handleStartEditMode}
-        handleUpdateDevice={handleUpdateDevice}
-        isUpToDate={isUpToDate}
-      />
+      {edit && (
+        <UpdateButton
+          handleCheckUpdate={handleCheckUpdate}
+          handleEdit={handleStartEditMode}
+          handleUpdateDevice={handleUpdateDevice}
+          isUpToDate={isUpToDate}
+        />
+      )}
+
+      {/* TODO: Add button for discover mode */}
 
       <DeviceEditModal
         handleClose={handleEndEditMode}

@@ -1,6 +1,6 @@
 import mqtt from 'mqtt';
+import { TasmotaDevice } from './device.types';
 import { storeDiscoveredTasmotaDevice } from './storage';
-import { TasmotaDevice } from './tasmota.types';
 
 export function mqttSetup() {
   const mqttUrl = process.env.MQTTURL ?? 'localhost';
@@ -47,11 +47,13 @@ function handleTasmotaMessage(message: string) {
   if (data.ip) {
     const device: TasmotaDevice = {
       ip: data.ip,
-      deviceName: data.dn,
+      url: `http://${data.ip}`,
+      type: 'tasmota',
+      name: data.dn,
       friendlyName: data.hn,
       mac: data.mac,
       deviceType: data.md,
-      swVersion: data.sw,
+      version: data.sw,
       topic: data.t,
       fullTopic: data.ft,
       subTopics: data.tp,

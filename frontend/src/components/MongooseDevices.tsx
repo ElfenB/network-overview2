@@ -1,13 +1,21 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { getData } from '../utils/getData';
 import { DeviceList } from './common/DeviceList';
 import { DeviceListHeader } from './common/DeviceListHeader';
 import { TileData } from './common/DeviceTile.types';
 import { getIsUpToDateAll } from './common/DeviceTile.utils';
-import { useGetData } from './hooks/useGetData';
 
 export function MongooseDevices() {
   // const devices: TileData[] = mongooseDevicesMock;
-  const [devices, setDevices] = useState<TileData[]>(useGetData('mongoose'));
+  const [devices, setDevices] = useState<TileData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData('mongoose');
+      setDevices(data);
+    };
+    void fetchData();
+  }, []);
 
   const handleSetDevices = useCallback((devices: TileData[]) => {
     // TODO: Save devices when has changed

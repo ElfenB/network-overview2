@@ -1,8 +1,8 @@
 export type TileData = {
   name: string;
-  room: string;
   url: string;
   type: DeviceType;
+  room?: string;
   version?: string;
   latestVersion?: string;
   port?: number;

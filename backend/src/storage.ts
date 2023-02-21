@@ -1,6 +1,6 @@
 import { writeFile } from 'fs';
 import { readFile } from 'jsonfile';
-import { TasmotaDevice } from './tasmota.types';
+import { TasmotaDevice } from './device.types';
 
 const dataPath = process.env.DATAPATH ?? './data';
 const fullDataPath = dataPath + '/tasmota.json';

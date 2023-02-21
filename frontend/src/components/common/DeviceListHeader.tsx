@@ -1,7 +1,15 @@
-import { Box, SxProps, Theme, Typography } from '@mui/material';
+import WifiFindIcon from '@mui/icons-material/WifiFind';
+import { Box, IconButton, SxProps, Theme, Typography } from '@mui/material';
 import { UpdateButton } from './UpdateButton';
 
 const sx: Record<string, SxProps<Theme>> = {
+  discover: {
+    marginLeft: 1,
+  },
+  heading: {
+    alignItems: 'center',
+    display: 'flex',
+  },
   root: {
     alignItems: 'center',
     display: 'flex',
@@ -13,13 +21,27 @@ type Props = {
   children: string;
   handleCheckUpdateAll: () => void;
   handleUpdateDeviceAll: () => void;
+  handleDiscover?: () => void;
   isUpToDateAll: boolean | undefined;
 };
 
-export function DeviceListHeader({ children, handleCheckUpdateAll, handleUpdateDeviceAll, isUpToDateAll }: Props) {
+export function DeviceListHeader({
+  children,
+  handleCheckUpdateAll,
+  handleUpdateDeviceAll,
+  handleDiscover,
+  isUpToDateAll,
+}: Props) {
   return (
     <Box sx={sx.root}>
-      <Typography variant="h4">{children}</Typography>
+      <Box sx={sx.heading}>
+        <Typography variant="h4">{children}</Typography>
+        {handleDiscover && (
+          <IconButton sx={sx.discover} onClick={handleDiscover}>
+            <WifiFindIcon />
+          </IconButton>
+        )}
+      </Box>
       <UpdateButton
         handleCheckUpdate={handleCheckUpdateAll}
         handleUpdateDevice={handleUpdateDeviceAll}
