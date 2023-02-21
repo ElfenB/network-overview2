@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
@@ -16,7 +16,6 @@ import {
   Theme,
   Typography,
 } from '@mui/material';
-import { v4 as uuid } from 'uuid';
 import { DeviceType, deviceTypes, initialTileState, TileData, urlRegex } from './DeviceTile.types';
 
 const sx: Record<string, SxProps<Theme>> = {
@@ -45,9 +44,6 @@ const sx: Record<string, SxProps<Theme>> = {
     flexDirection: 'column',
     gap: 1,
   },
-  uuid: {
-    color: 'grey.400',
-  },
 };
 
 type Props = {
@@ -63,13 +59,6 @@ export function DeviceEditModal({ handleClose, handleDelete, handleSave, open, i
 
   const [device, setDevice] = useState(initialDeviceState);
   const [urlValidationError, setUrlValidationError] = useState(false);
-
-  useEffect(() => {
-    // Randomize uuid for new devices
-    if (!initialDevice) {
-      setDevice((prevDevice) => ({ ...prevDevice, uuid: uuid() }));
-    }
-  }, [initialDevice]);
 
   const handleFormChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'url') {
@@ -138,8 +127,6 @@ export function DeviceEditModal({ handleClose, handleDelete, handleSave, open, i
                 .sort()}
             </Select>
           </Box>
-
-          <FormHelperText sx={sx.uuid}>UUID: {device.uuid}</FormHelperText>
         </Container>
 
         <Box sx={sx.buttons}>

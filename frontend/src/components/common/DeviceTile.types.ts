@@ -1,11 +1,8 @@
-import { v4 as uuid } from 'uuid';
-
 export type TileData = {
   name: string;
   room: string;
   url: string;
   type: DeviceType;
-  uuid: string;
   version?: string;
   latestVersion?: string;
   port?: number;
@@ -19,7 +16,6 @@ export const initialTileState: TileData = {
   room: '',
   type: 'other',
   url: '',
-  uuid: uuid(),
 };
 
 export const urlRegex =

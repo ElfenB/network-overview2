@@ -23,9 +23,9 @@ export function DeviceList({ devices, setDevices }: Props) {
   const handleChangeDevice = useCallback(
     (newDevice: TileData) => {
       // Check if device is already known
-      const deviceChanged = devices.filter((d) => d.uuid === newDevice.uuid).length === 1;
-      if (deviceChanged) {
-        return setDevices(devices.map((d) => (d.uuid === newDevice.uuid ? newDevice : d)));
+      const isAlreadyKnown = devices.filter((d) => d.url === newDevice.url).length >= 1;
+      if (isAlreadyKnown) {
+        return setDevices(devices.map((d) => (d.url === newDevice.url ? newDevice : d)));
       }
       return setDevices([...devices, newDevice]);
     },
@@ -34,7 +34,7 @@ export function DeviceList({ devices, setDevices }: Props) {
 
   const handleDeleteDevice = useCallback(
     (device: TileData) => {
-      setDevices(devices.filter((d) => d.uuid !== device.uuid));
+      setDevices(devices.filter((d) => d.url !== device.url));
     },
     [devices, setDevices]
   );

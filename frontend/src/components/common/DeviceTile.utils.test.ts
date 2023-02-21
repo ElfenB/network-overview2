@@ -62,7 +62,6 @@ describe('getIsUpToDateAll', () => {
       {
         latestVersion: '1.2.3',
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
@@ -71,7 +70,6 @@ describe('getIsUpToDateAll', () => {
       {
         latestVersion: '1.2.3',
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
@@ -85,14 +83,12 @@ describe('getIsUpToDateAll', () => {
     const devices: TileData[] = [
       {
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
       },
       {
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
@@ -105,7 +101,6 @@ describe('getIsUpToDateAll', () => {
     const devices: TileData[] = [
       {
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
@@ -113,7 +108,6 @@ describe('getIsUpToDateAll', () => {
       {
         latestVersion: '1.2.5',
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
@@ -127,7 +121,6 @@ describe('getIsUpToDateAll', () => {
     const devices: TileData[] = [
       {
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen',
         room: 'Schlafzimmer',
         url: 'http://192.168.178.101',
@@ -135,7 +128,6 @@ describe('getIsUpToDateAll', () => {
       {
         latestVersion: '1.2.5',
         type: 'other',
-        uuid: 'not-needed-for-tests',
         name: 'Rollladen rechts',
         room: 'Eltern-Schlafzimmer',
         url: 'http://192.168.178.152',
