@@ -31,7 +31,7 @@ module.exports = {
   ],
   plugins: ['prettier'],
   rules: {
-    // 'prettier/prettier': ['warn'],
+    'prettier/prettier': ['warn'],
     'sonarjs/no-duplicate-string': 'off',
   },
 };
